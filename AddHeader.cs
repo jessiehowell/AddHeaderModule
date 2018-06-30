@@ -29,15 +29,12 @@ namespace AddHeaderModule
                 {
                     headerValue = httpReq.ServerVariables.Get(headerValue.TrimStart('{').TrimEnd('}'));
                 }
-                //NameValueCollection newHeader = new NameValueCollection();
                 try
                 {
-                    //newHeader.Set(headerName, headerValue);
                     httpReq.Headers.Set(headerName, headerValue);
                 }
                 catch (Exception ex)
                 {
-                    //newHeader.Set("X-Exception-Thrown", ex.Source);
                     httpReq.Headers.Set("X-Exception-Thrown", ex.Source);
                 }
             }
