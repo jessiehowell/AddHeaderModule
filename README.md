@@ -12,12 +12,10 @@ Simply use the appSetting section of the web.config to add any custom headers yo
 
 ##### Example:
 `<!--Send a header named 'X-Forwarded-User' with the value of the AUTH_USER variable-->`
-
 `<add key="X-Forwarded-User" value="{AUTH_USER}"/>`
 
 
 `<!--Send a header named "My-Header" with value "MyValue"-->`
-
 `<add key="My-Header" value="MyValue"/>`
 
 ##### Error Handling:
