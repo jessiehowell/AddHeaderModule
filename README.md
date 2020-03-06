@@ -5,10 +5,19 @@
 This module was written to better facilitate using IIS as a reverse proxy. It is often helpful to pass custom headers (especially server variables) to the back end application. Unfortunately, ARR alone can not reliably pass some server variables (i.e. AUTH_USER). The AddHeaderModule will let you quickly add request headers by entering them in you web.config file.
 
 ##### Installation:
-Create a new Web Site or Application in IIS, set the App Pool to .NET 4.0, drop the AddHeaderModule.dll into the bin folder of your site and the web.config into the root folder of your site. Optionally, configure URL rewrite (be sure to do this after placing the web.config or it will undo your URL Rewrite settings).
+Install IIS with (at minimum) .NET 4.5 Extensions (I include Windows Auth for reverse proxy):
+````
+Import-Module ServerManager
+Add-WindowsFeature Web-Server, Web-WebServer, Web-Windows-Auth, Web-Net-Ext45, Web-Mgmt-Tools, Web-Mgmt-Console
+````
+Install ARR 3.0 and Url Rewrite 2:
+https://www.microsoft.com/en-us/download/details.aspx?id=47333
+https://www.microsoft.com/en-us/download/details.aspx?id=47337
+
+Use the Default Web Site or create a new Web Site or Application in IIS, set the App Pool to .NET 4.0, drop the AddHeaderModule.dll into a subfolder named bin in your web site root. Add the AddHeaderModule (https://docs.microsoft.com/en-us/iis/configuration/system.webserver/modules/add) using the name 'AddHeaderModule' and type 'AddHeaderModule.AddHeader'. Optionally, configure URL rewrite (be sure to do this after placing the web.config or it will undo your URL Rewrite settings).
 
 ##### Configuration:
-Simply use the appSetting section of the web.config to add any custom headers you wish. If you want the value to contain a server variable, then put the variable name between curly braces. IIS server variables can be found here: https://msdn.microsoft.com/en-us/library/ms524602%28v=vs.90%29.aspx?f=255&MSPPError=-2147217396
+Simply use the appSetting section of the web.config (do this by using the Configuration Editor and selecting the appSettings node) to add any custom headers you wish. If you want the value to contain a server variable, then put the variable name between curly braces. IIS server variables can be found here: https://msdn.microsoft.com/en-us/library/ms524602%28v=vs.90%29.aspx?f=255&MSPPError=-2147217396
 
 ##### Example:
 ```
