@@ -12,7 +12,7 @@ Add-WindowsFeature Web-Server, Web-WebServer, Web-Windows-Auth, Web-Net-Ext45, W
 ````
 Install ARR 3.0 and Url Rewrite 2:
 https://www.microsoft.com/en-us/download/details.aspx?id=47333
-https://www.microsoft.com/en-us/download/details.aspx?id=47337
+https://www.iis.net/downloads/microsoft/url-rewrite#additionalDownloads
 
 Use the Default Web Site or create a new Web Site or Application in IIS, set the App Pool to .NET 4.0, drop the AddHeaderModule.dll into a subfolder named bin in your web site root. Add the AddHeaderModule (https://docs.microsoft.com/en-us/iis/configuration/system.webserver/modules/add) using the name 'AddHeaderModule' and type 'AddHeaderModule.AddHeader'. Optionally, configure URL rewrite (be sure to do this after placing the web.config or it will undo your URL Rewrite settings).
 
